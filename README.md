@@ -8,7 +8,7 @@
 2. [Commit Messages](#commit-messages)
 3. [React Guidelines](#react-guidelines)
 
-## 1. Contribution Guidelines
+## Contribution Guidelines
 
 - Always make sure that you have pulled from the main branch before pushing commit.
 - When merge conflicts arise ensure you check with other team members before accepting or rejecting the changes
@@ -19,7 +19,7 @@
   - [UnSplash](https://unsplash.com/documentation)
   - [ReactJS](https://reactjs.org/docs/getting-started.html)
 
-## 2. Commit Messages
+## Commit Messages
 
 ### Structure
 
@@ -47,8 +47,8 @@ git commit -m "feat: implement PhotoForm"
 git commit -m "refactor(form): improve button styles"
 ```
 
-## 3. React Guidelines
+## React Guidelines
 
 Use this guide and the docs linked above for all React questions.
 
-[ReactAppGuidelines.md](https://github.com/abuschhorn/the-hap-app/REACTGUIDELINES.md)
+[ReactAppGuidelines.md](https://github.com/abuschhorn/the-hap-app/blob/master/REACTGUIDELINES.md)
