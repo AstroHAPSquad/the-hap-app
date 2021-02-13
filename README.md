@@ -8,6 +8,8 @@
 2. [Commit Messages](#commit-messages)
 3. [React Guidelines](#react-guidelines)
 
+---
+
 ## Contribution Guidelines
 
 - Always make sure that you have pulled from the main branch before pushing commit.
