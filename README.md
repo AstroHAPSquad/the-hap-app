@@ -17,7 +17,7 @@
 - Communicate clearly to the team what files and components you are working on.
 - Remember to update the Trello board as components are assigned and completed.
 - Resources and Docs:
-  - [React Bootstrap](https://react-bootstrap.github.io/)
+  - [Material UI](https://material-ui.com/)
   - [UnSplash](https://unsplash.com/documentation)
   - [ReactJS](https://reactjs.org/docs/getting-started.html)
 

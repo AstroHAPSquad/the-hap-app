@@ -1,15 +1,19 @@
 import React from "react";
-import './App.css';
+import {Router} from '@reach/router'
 import ImageForm from './components/ImageForm'
-import {Navbar} from 'react-bootstrap'
+import NavBar from "./components/NavBar";
+import Dashboard from "./components/Dashboard"
+import Home from "./components/Home";
 
 function App() {
   return (
-    <div className="App">
-      <Navbar className="header">
-        <h1 className="text">The H A P</h1>
-        </Navbar>
-      <ImageForm/>
+    <div >
+        <NavBar/>
+        <Router>
+          <Home path="/"/>
+        <ImageForm path="/newpost"/>
+        <Dashboard path="/dashboard"/>
+        </Router>
     </div>
   );
 }

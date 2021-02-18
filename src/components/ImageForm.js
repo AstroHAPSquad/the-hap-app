@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Form, FormControl} from "react-bootstrap"
+import {Typography} from "@material-ui/core";
 
 export default function ImageForm(props) {
     const [title, setTitle] = useState("");
@@ -19,12 +19,12 @@ export default function ImageForm(props) {
 
     return (
         <div>
-            <h1>Image Form</h1>
-            <Form onSubmit={handleSubmit}>
+            <Typography variant="h2">Image Form</Typography>
+            <form onSubmit={handleSubmit}>
                 <input placeholder="Title" value={title} onChange={(event) => setTitle(event.target.value)}/>
                 <input placeholder="Subtitle" value={subtitle} onChange={(event) => setSubtitle(event.target.value)}/>
                 <button>Submit</button>
-            </Form>
+            </form>
             <div>
                 {list.map((item) => 
                     <>
