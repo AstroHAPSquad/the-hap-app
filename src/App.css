@@ -13,3 +13,14 @@
 .text {
   font-family: Raleway, serif;
 }
+
+a.nav-link {
+  color: #ab0c2f;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+a.nav-link:hover,
+a.nav-link:active {
+  text-decoration: underline;
+}
