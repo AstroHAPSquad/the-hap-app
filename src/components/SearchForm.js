@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Typography} from "@material-ui/core";
 
 export default function SearchForm(props) {
-    const [searchValue, setSearchValue]
+    const [searchValue, setSearchValue] = useState("");
 
 
     function handleSubmit(event) {

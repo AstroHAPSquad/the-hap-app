@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Typography, Button, makeStyles, Grid} from "@material-ui/core";
 import { navigate } from "@reach/router";
 import RandomForm from "./RandomForm"
+import SearchForm from "./SearchForm"
 
 const useStyles = makeStyles(() => ({
     root: { 
@@ -63,7 +64,7 @@ export default function ImageForm(props) {
                 { random ? 
                     <RandomForm/>
                 : search ? 
-                    <Typography>Search</Typography>
+                    <SearchForm/>
                 : null
             }
             </div>
