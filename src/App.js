@@ -7,7 +7,7 @@ import Home from "./components/Home";
 
 function App() {
   return (
-    <div >
+    <div style={{marginBottom: 100}}>
         <NavBar/>
         <Router>
           <Home path="/"/>

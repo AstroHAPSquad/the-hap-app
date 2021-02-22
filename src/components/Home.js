@@ -1,8 +1,11 @@
 import React from "react"
-import {Typography, Button} from "@material-ui/core"
+import {Typography, Button, Grid, makeStyles} from "@material-ui/core"
 import {navigate} from "@reach/router"
+import {data} from "../mockdata/data"
+
 
 export default function Home() {
+
     function handleClick(event) {
         navigate(`/newpost`)
     }
@@ -16,6 +19,7 @@ export default function Home() {
         <div style={{display: "flex", justifyContent: "center"}}>
         <Button variant="contained" onClick={(event) => handleClick(event.target.value)}>Get Started</Button>
         </div>
+
         </>
     )
 }
