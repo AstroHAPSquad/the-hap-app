@@ -1,11 +1,10 @@
 import React from "react"
 import {Typography, Button, Grid, makeStyles} from "@material-ui/core"
 import {navigate} from "@reach/router"
-import {data} from "../mockdata/data"
+
 
 
 export default function Home() {
-
     function handleClick(event) {
         navigate(`/newpost`)
     }

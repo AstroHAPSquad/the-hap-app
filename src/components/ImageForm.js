@@ -23,11 +23,11 @@ const useStyles = makeStyles(() => ({
 }))
 
 export default function ImageForm(props) {
+    const {images} = props
     const [title, setTitle] = useState("");
     const [subtitle, setSubtitle] = useState("");
     const [random, setRandom] = useState(false);
     const [search, setSearch] = useState(false);
-    const [list, setList] = useState([]);
     const classes = useStyles();
     
     // function handleSubmit(event) {
@@ -51,7 +51,7 @@ export default function ImageForm(props) {
 
     return (
         <div className={classes.root}>
-            <Grid direction="row" justify="center" alignItem="center">
+            <Grid container direction="row" justify="center" alignItem="center">
                 <Grid item xs={12}><Typography variant="h2">New Post</Typography></Grid>
                 <Grid item xs = {12}><input className={classes.input} placeholder="Title" value={title} onChange={(event) => setTitle(event.target.value)}/></Grid>
                 <Grid item xs={12}><input className={classes.input} placeholder="Subtitle" value={subtitle} onChange={(event) => setSubtitle(event.target.value)}/></Grid>
@@ -62,20 +62,20 @@ export default function ImageForm(props) {
             </Grid>
             <div>
                 { random ? 
-                    <RandomForm/>
+                    <RandomForm images={images}/>
                 : search ? 
-                    <SearchForm/>
+                    <SearchForm images={images}/>
                 : null
             }
             </div>
-            <div>
+            {/* <div>
                 {list.map((item) => 
                     <>
                     <h3>{item.title}</h3>
                     <p>{item.subtitle}</p>
                     </>
                 )}
-            </div>
+            </div> */}
         </div>
     )
 }
