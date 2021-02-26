@@ -5,7 +5,7 @@ import { navigate } from "@reach/router"
 
 const useStyles = makeStyles(() => ({
     root: {
-        marginTop: 50,
+        marginTop: 20,
     },
     gridItem: {
         marginTop: 20,

@@ -13,7 +13,7 @@ function App() {
     <div style={{marginBottom: 100}}>
         <NavBar/>
         <Router>
-          <Home path="/"/>
+          <Home path="/" images={images}/>
         <ImageForm path="/newpost" images={images}/>
         <Dashboard path="/dashboard"/>
         </Router>

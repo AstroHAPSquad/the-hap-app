@@ -1,6 +1,6 @@
 import React from "react"
 import {Link } from "@reach/router"
-import {Toolbar, makeStyles} from "@material-ui/core"
+import {Toolbar, makeStyles, Grid} from "@material-ui/core"
 
 const useStyles = makeStyles(() => ({
     nav: {
@@ -30,11 +30,21 @@ export default function NavBar() {
     
     return (
         <Toolbar className={classes.nav}>
+            <Grid container align="center" alignItems="center">
+                <Grid item xs={4}>
+                <Link to="/newpost" className={classes.navItem}>Create New Post</Link>
+                </Grid>
+                <Grid item xs={4}>
+                <Link to="/" className={classes.businessName}>The H A P</Link>
+                </Grid>
+                <Grid item xs={4}>
+                <Link to="/dashboard" className={classes.navItem}>Dashboard</Link>
+                </Grid>
         
-        <Link to="/newpost" className={classes.navItem}>Create New Post</Link>
         
-        <Link to="/" className={classes.businessName}>The H A P</Link>
-        <Link to="/dashboard" className={classes.navItem}>Dashboard</Link>
+        
+        
+        </Grid>
         </Toolbar>
     )
 }
