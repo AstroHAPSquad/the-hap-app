@@ -44,6 +44,9 @@ const tileData = [
  {img: "https://picsum.photos/id/1025/4951/3301"}
  ];
  
+// work on styles, then work on hovering feature, then work on having the image be coming just from the mockdata
+
+
  const useStyles = makeStyles(theme => ({
   root: {
 
@@ -60,9 +63,7 @@ export default function Dashboard(props) {
       <Grid container align= "center" alignItems= "center">
           {tileData.map(tile => (
             <Grid item xs={4}>
-            {/* <GridListTile key={tile.img} cols={tile.cols || 1}> */}
-              <img src={tile.img} alt={tile.title} height = { 300 } />
-            {/* </GridListTile> */}
+              <img src={tile.img} height = { 300 } />
             </Grid>
         ))}
       </Grid>
