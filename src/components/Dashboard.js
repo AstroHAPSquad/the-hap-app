@@ -58,10 +58,11 @@ const tileData = [
 }));
 export default function Dashboard(props) {
   const classes = useStyles();
+  const {posts} = props;
   return (
     <div className={classes.root}>
       <Grid container align= "center" alignItems= "center">
-          {tileData.map(tile => (
+          {posts.map(tile => (
             <Grid item xs={4}>
               <img src={tile.img} height = { 300 } />
             </Grid>

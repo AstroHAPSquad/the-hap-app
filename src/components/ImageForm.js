@@ -23,9 +23,10 @@ const useStyles = makeStyles(() => ({
 }))
 
 export default function ImageForm(props) {
-    const {images} = props
+    const {images, posts, addToList} = props
     const [title, setTitle] = useState("");
     const [subtitle, setSubtitle] = useState("");
+    const [post, setPost] = useState(null);
     const [random, setRandom] = useState(false);
     const [search, setSearch] = useState(false);
     const classes = useStyles();
@@ -36,16 +37,15 @@ export default function ImageForm(props) {
     //     setTitle("");
     //     setSubtitle("");
     // }
-    // function addToList(newItem) {
-    //     setList([newItem, ...list])
-    // }
     function handleRandom() {
         setSearch(false);
         setRandom(true);
+        setPost({id: "INPUT"+String(Math.random()*1000), title, subtitle})
     }
     function handleSearch() {
         setRandom(false);
         setSearch(true);
+        setPost({id: "INPUT"+String(Math.random()*1000), title, subtitle})
     }
     
 
@@ -62,9 +62,9 @@ export default function ImageForm(props) {
             </Grid>
             <div>
                 { random ? 
-                    <RandomForm images={images}/>
+                    <RandomForm images={images} post={post} addToList={addToList}/>
                 : search ? 
-                    <SearchForm images={images}/>
+                    <SearchForm images={images} post={post} addToList={addToList}/>
                 : null
             }
             </div>

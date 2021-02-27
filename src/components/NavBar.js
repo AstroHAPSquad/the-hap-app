@@ -40,10 +40,6 @@ export default function NavBar() {
                 <Grid item xs={4}>
                 <Link to="/dashboard" className={classes.navItem}>Dashboard</Link>
                 </Grid>
-        
-        
-        
-        
         </Grid>
         </Toolbar>
     )
