@@ -64,7 +64,7 @@ export default function Dashboard(props) {
       <Grid container align= "center" alignItems= "center">
           {posts.map(tile => (
             <Grid item xs={4}>
-              <img src={tile.img} height = { 300 } />
+              <img src={tile.img} height = { 400 } />
             </Grid>
         ))}
       </Grid>
