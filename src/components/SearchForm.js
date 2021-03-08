@@ -6,6 +6,7 @@ const useStyles = makeStyles(() => ({
   root: {
     textAlign: "center",
     marginTop: 50,
+    padding: 40,
   },
   button: {
     padding: 10,
@@ -14,8 +15,8 @@ const useStyles = makeStyles(() => ({
     alignSelf: "center",
   },
   input: {
-    padding: 10,
-    margin: 10,
+    padding: 20,
+    margin: 20,
     width: "50%",
   },
 }));
@@ -36,14 +37,14 @@ export default function SearchForm(props) {
       .then((response) => setSource(response.results));
   }, [term, setSource]);
 
-  /*  function handleSubmit(event) {
-        event.preventDefault();
-        addToList({post, img: source.urls.full});
-        navigate("/dashboard")
-        setImage(false);
-        setSource("");
-    }
-   */
+  function handleSubmit(event) {
+    event.preventDefault();
+    addToList({ post, img: source[0].urls.full, id: source[0].id });
+    navigate("/dashboard");
+    setTerm("");
+    setSearchValue("");
+    setSource([]);
+  }
 
   function handleSearch(event) {
     console.log("in here");
@@ -51,6 +52,9 @@ export default function SearchForm(props) {
     setTerm(searchValue);
     setSearchValue("");
   }
+
+  //work on ternary operator for button (do in handlesearch function (i think))
+
   return (
     <>
       <div className={classes.root}>
@@ -81,23 +85,20 @@ export default function SearchForm(props) {
                 // console.log("tile: ", tile);
                 return (
                   <Grid item xs={4} key={tile.id}>
-                    <img src={tile.urls.regular} height={400} />
+                    <img src={tile.urls.thumb} height={300} />
                   </Grid>
                 );
               })}
           </Grid>
         }
-        {/* <Grid className={classes.gridItem} item xs={12}> */}
-        {/* { grid ?
-        <img src={source.urls && source.urls.full} height={300}/>
-        : null} */}
-        {/* </Grid> */}
-        {/* {image ? */}
-        {/* <Grid className={classes.gridItem} item xs={12}> */}
-        {/* <Button variant="contained" className={classes.submit} onClick={handleSubmit}>Submit</Button> */}
-        {/* </Grid> */}
-        {/* : null} */}
       </div>
+      <Button
+        variant="contained"
+        className={classes.submit}
+        onClick={handleSubmit}
+      >
+        Submit
+      </Button>
     </>
   );
 }
