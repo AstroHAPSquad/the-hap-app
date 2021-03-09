@@ -93,6 +93,7 @@ export default function SearchForm(props) {
                     xs={4}
                     key={tile.id}
                     onClick={() => setPhoto(tile)}
+                    className={selected ? classes.select : null}
                   >
                     <img src={tile.urls.thumb} height={300} />
                   </Grid>
