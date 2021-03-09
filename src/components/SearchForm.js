@@ -19,6 +19,10 @@ const useStyles = makeStyles(() => ({
     margin: 20,
     width: "50%",
   },
+
+  select: {
+    opacity: "10%",
+  },
 }));
 export default function SearchForm(props) {
   const { images, post, posts, addToList } = props;
@@ -29,6 +33,7 @@ export default function SearchForm(props) {
   const [searchValue, setSearchValue] = useState("");
   const [term, setTerm] = useState("");
   const [photo, setPhoto] = useState({});
+  const [selected, setSelected] = useState(false);
 
   useEffect(() => {
     fetch(
@@ -55,6 +60,12 @@ export default function SearchForm(props) {
     event.preventDefault();
     setTerm(searchValue);
     setGridExist(true);
+  }
+
+  function handleClick(post) {
+    setPhoto(post);
+    setSelected(true);
+
   }
 
   //work on ternary operator for button (do in handlesearch function (i think))
@@ -92,7 +103,8 @@ export default function SearchForm(props) {
                     item
                     xs={4}
                     key={tile.id}
-                    onClick={() => setPhoto(tile)}
+                    onClick={() => handleClick(tile)}
+    
                     className={selected ? classes.select : null}
                   >
                     <img src={tile.urls.thumb} height={300} />
