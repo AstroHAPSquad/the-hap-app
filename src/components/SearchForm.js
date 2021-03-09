@@ -28,6 +28,7 @@ export default function SearchForm(props) {
   const [gridExist, setGridExist] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [term, setTerm] = useState("");
+  const [photo, setPhoto] = useState({});
 
   useEffect(() => {
     fetch(
@@ -40,11 +41,13 @@ export default function SearchForm(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    addToList({ post, img: source[0].urls.full, id: source[0].id });
+    console.log(photo);
+    addToList({ ...post, img: photo.urls.full, id: photo.id });
     navigate("/dashboard");
     setTerm("");
     setSearchValue("");
     setSource([]);
+    setPhoto({});
   }
 
   function handleSearch(event) {
@@ -67,11 +70,10 @@ export default function SearchForm(props) {
             onChange={(event) => setSearchValue(event.target.value)}
           />
           <div>
-            <Button 
+            <Button
               variant="contained"
               className={classes.button}
               onClick={handleSearch}
-              
             >
               {" "}
               Search
@@ -86,7 +88,12 @@ export default function SearchForm(props) {
               source.map((tile) => {
                 // console.log("tile: ", tile);
                 return (
-                  <Grid item xs={4} key={tile.id}>
+                  <Grid
+                    item
+                    xs={4}
+                    key={tile.id}
+                    onClick={() => setPhoto(tile)}
+                  >
                     <img src={tile.urls.thumb} height={300} />
                   </Grid>
                 );
@@ -94,19 +101,16 @@ export default function SearchForm(props) {
           </Grid>
         }
       </div>
-      
-      {gridExist    ? 
-      <Button
-        variant="contained"
-        className={classes.submit}
-        onClick={handleSubmit} 
-      >
-        Submit
-      </Button>
-      : null}
-    
+
+      {gridExist ? (
+        <Button
+          variant="contained"
+          className={classes.submit}
+          onClick={handleSubmit}
+        >
+          Submit
+        </Button>
+      ) : null}
     </>
-    
-    
   );
 }
