@@ -32,7 +32,7 @@ export default function RandomForm(props) {
 
 
         useEffect(() => {
-        fetch(`https://api.unsplash.com/photos/random/?client_id=FHquU1-Nh6BqvwVQu0FwBeXjBXd32mG8ACabjjMoRrU`, {method: "GET"})
+        fetch(`https://api.unsplash.com/photos/random/?orientation=squarish&client_id=FHquU1-Nh6BqvwVQu0FwBeXjBXd32mG8ACabjjMoRrU`, {method: "GET"})
   .then(data => data.json())
   .then(response => setSource(response))
     },[setSource])
@@ -44,7 +44,7 @@ export default function RandomForm(props) {
     }
     function handleSubmit(event) {
         event.preventDefault();
-        addToList({post, img: source.urls.full});
+        addToList({...post, img: source.urls.full});
         navigate("/dashboard")
         setImage(false);
         setSource("");

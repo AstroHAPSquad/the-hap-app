@@ -31,12 +31,12 @@ export default function Slideshow(props) {
     return (
         <div className={classes.root}>
       <GridList className={classes.gridList} cols={3}>
-        {posts.map((item) => (
+        {posts && posts.map((item) => (
           <GridListTile className={classes.listTile} key={item.id} rows={3}>
             <img src={item.img}/>
-            {/* <GridListTileBar
+            <GridListTileBar
               title={item.title}
-            /> */}
+            />
           </GridListTile>
         ))}
       </GridList>

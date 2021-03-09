@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
   },
 
   select: {
-    opacity: "10%",
+    opacity: "50%",
   },
 }));
 export default function SearchForm(props) {
@@ -105,7 +105,7 @@ export default function SearchForm(props) {
                     key={tile.id}
                     onClick={() => handleClick(tile)}
     
-                    className={selected ? classes.select : null}
+                    className={selected && tile.id == photo.id ? classes.select : null}
                   >
                     <img src={tile.urls.thumb} height={300} />
                   </Grid>
