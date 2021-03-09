@@ -25,6 +25,7 @@ export default function SearchForm(props) {
   const classes = useStyles();
 
   const [source, setSource] = useState([]);
+  const [gridExist, setGridExist] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [term, setTerm] = useState("");
 
@@ -50,7 +51,7 @@ export default function SearchForm(props) {
     console.log("in here");
     event.preventDefault();
     setTerm(searchValue);
-    setSearchValue("");
+    setGridExist(true);
   }
 
   //work on ternary operator for button (do in handlesearch function (i think))
@@ -66,10 +67,11 @@ export default function SearchForm(props) {
             onChange={(event) => setSearchValue(event.target.value)}
           />
           <div>
-            <Button
+            <Button 
               variant="contained"
               className={classes.button}
               onClick={handleSearch}
+              
             >
               {" "}
               Search
@@ -92,13 +94,19 @@ export default function SearchForm(props) {
           </Grid>
         }
       </div>
+      
+      {gridExist    ? 
       <Button
         variant="contained"
         className={classes.submit}
-        onClick={handleSubmit}
+        onClick={handleSubmit} 
       >
         Submit
       </Button>
+      : null}
+    
     </>
+    
+    
   );
 }
