@@ -1,11 +1,7 @@
 import React, {useState, useEffect} from "react"
 import {Typography, Grid, Button, makeStyles} from "@material-ui/core"
-import {data} from "../mockdata/data"
 import { navigate } from "@reach/router"
 
-// const unsplash = new Unsplash({
-//     accessKey: "FHquU1-Nh6BqvwVQu0FwBeXjBXd32mG8ACabjjMoRrU",
-// })
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -24,7 +20,7 @@ const useStyles = makeStyles(() => ({
 }))
 
 export default function RandomForm(props) {
-    const {images, post, posts, addToList} = props
+    const {post, addToList} = props
     const classes = useStyles()
     const [image, setImage] = useState(false);
     const [source, setSource] = useState({});

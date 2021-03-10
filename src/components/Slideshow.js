@@ -1,7 +1,5 @@
 import React from "react"
 import {GridList, GridListTile, GridListTileBar, makeStyles} from "@material-ui/core"
-import {data} from "../mockdata/data"
-import { red } from "@material-ui/core/colors"
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -13,7 +11,6 @@ const useStyles = makeStyles(() => ({
       },
       gridList: {
         flexWrap: 'nowrap',
-        // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
         transform: 'translateZ(0)',
         height: 550,
         alignItem: "center",
@@ -34,9 +31,10 @@ export default function Slideshow(props) {
         {posts && posts.map((item) => (
           <GridListTile className={classes.listTile} key={item.id} rows={3}>
             <img src={item.img}/>
+            {item.title ? 
             <GridListTileBar
-              title={item.title}
-            />
+            title={item.title}
+          /> : null}
           </GridListTile>
         ))}
       </GridList>

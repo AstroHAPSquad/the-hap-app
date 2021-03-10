@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {Typography, Button, makeStyles, Grid} from "@material-ui/core";
-import { navigate } from "@reach/router";
 import RandomForm from "./RandomForm"
 import SearchForm from "./SearchForm"
 
@@ -31,12 +30,6 @@ export default function ImageForm(props) {
     const [search, setSearch] = useState(false);
     const classes = useStyles();
     
-    // function handleSubmit(event) {
-    //     event.preventDefault();
-    //     addToList({id: String(Math.random()*1000+100), title, subtitle, src});
-    //     setTitle("");
-    //     setSubtitle("");
-    // }
     function handleRandom() {
         setSearch(false);
         setRandom(true);
@@ -52,7 +45,7 @@ export default function ImageForm(props) {
     return (
         <div className={classes.root}>
             <Grid container direction="row" justify="center" alignItem="center">
-                <Grid item xs={12}><Typography variant="h2">New Post</Typography></Grid>
+                <Grid item xs={12}><Typography variant="h2" style={{fontFamily: "Raleway"}}>New Post</Typography></Grid>
                 <Grid item xs = {12}><input className={classes.input} placeholder="Title" value={title} onChange={(event) => setTitle(event.target.value)}/></Grid>
                 <Grid item xs={12}><input className={classes.input} placeholder="Subtitle" value={subtitle} onChange={(event) => setSubtitle(event.target.value)}/></Grid>
                 <Grid item xs={12}>
@@ -68,14 +61,6 @@ export default function ImageForm(props) {
                 : null
             }
             </div>
-            {/* <div>
-                {list.map((item) => 
-                    <>
-                    <h3>{item.title}</h3>
-                    <p>{item.subtitle}</p>
-                    </>
-                )}
-            </div> */}
         </div>
     )
 }

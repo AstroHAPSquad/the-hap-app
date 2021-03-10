@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from "react";
-import {navigate, Router} from '@reach/router'
+import {Router} from '@reach/router'
 import ImageForm from './components/ImageForm'
 import NavBar from "./components/NavBar";
 import Dashboard from "./components/Dashboard"
 import Home from "./components/Home";
-import {data} from "./mockdata/data"
 
 
 function App() {
@@ -17,22 +16,13 @@ function App() {
   setPosts(prev => response.map(item => {
     const id = item.id
     const title = item.user.name
-    const subtitle = item.location.name
+    const subtitle = item.user.location
     const img = item.urls.full 
     console.log(item, img)
     return {...item, id, title, subtitle, img}
   }))
 })
 },[setPosts])
-
-  // function filterData(item) {
-  //   const id = item.id
-  //   const title = item.user.name
-  //   const subtitle = item.location.name
-  //   const img = item.urls.full 
-  //   console.log(item, img)
-  //   return {id, title, subtitle, img}
-  // }
 
   function addToList(newPost) {
     setPosts([newPost, ...posts])

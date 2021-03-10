@@ -1,5 +1,5 @@
 import React from "react"
-import {Typography, Button, Grid, makeStyles} from "@material-ui/core"
+import {Typography, Button} from "@material-ui/core"
 import {navigate} from "@reach/router"
 import Slideshow from "./Slideshow"
 

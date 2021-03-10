@@ -1,31 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles, Button, Grid } from "@material-ui/core";
 import { navigate } from "@reach/router";
-import { data } from "../mockdata/data";
 const useStyles = makeStyles(() => ({
   root: {
     textAlign: "center",
     marginTop: 50,
-    padding: 40,
   },
   button: {
     padding: 10,
     margin: 10,
     color: "red",
     alignSelf: "center",
+    marginBottom: 30,
   },
   input: {
-    padding: 20,
-    margin: 20,
+    padding: 10,
+    margin: 10,
     width: "50%",
-  },
+},
 
   select: {
     opacity: "50%",
   },
 }));
 export default function SearchForm(props) {
-  const { images, post, posts, addToList } = props;
+  const {post, addToList } = props;
   const classes = useStyles();
 
   const [source, setSource] = useState([]);
@@ -37,7 +36,7 @@ export default function SearchForm(props) {
 
   useEffect(() => {
     fetch(
-      `https://api.unsplash.com/search/photos?page=1&per_page=15&query=${term}&client_id=SsN2tdhFTFP1oJPWl-_J7W4lbuQKvE6Mt3DiYmBr5LE`,
+      `https://api.unsplash.com/search/photos?page=1&per_page=15&orientation=squarish&query=${term}&client_id=SsN2tdhFTFP1oJPWl-_J7W4lbuQKvE6Mt3DiYmBr5LE`,
       { method: "GET" }
     )
       .then((data) => data.json())
@@ -67,20 +66,18 @@ export default function SearchForm(props) {
     setSelected(true);
 
   }
-
-  //work on ternary operator for button (do in handlesearch function (i think))
-
   return (
-    <>
-      <div className={classes.root}>
-        <form className={classes.form} onSubmit={handleSearch}>
+    <div className={classes.root}>
+      <div>
+          <Grid container direction="row" justify="center" alignItem="center">
+            <Grid item xs={12}>
           <input
             className={classes.input}
             placeholder="Type anything..."
             value={searchValue}
             onChange={(event) => setSearchValue(event.target.value)}
           />
-          <div>
+</Grid>
             <Button
               variant="contained"
               className={classes.button}
@@ -89,8 +86,7 @@ export default function SearchForm(props) {
               {" "}
               Search
             </Button>
-          </div>
-        </form>
+          </Grid>
       </div>
       <div className={classes.gridItem}>
         {
@@ -118,12 +114,12 @@ export default function SearchForm(props) {
       {gridExist ? (
         <Button
           variant="contained"
-          className={classes.submit}
+          className={classes.button}
           onClick={handleSubmit}
         >
           Submit
         </Button>
       ) : null}
-    </>
+    </div>
   );
 }
