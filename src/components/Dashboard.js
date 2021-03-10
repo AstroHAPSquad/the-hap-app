@@ -1,12 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles, Grid, Button } from '@material-ui/core';
 import Slideshow from "./Slideshow";
 import PostModal from "./PostModal";
-import {navigate} from "@reach/router";
-
- 
-// work on styles, then work on hovering feature, then work on having the image be coming just from the mockdata
-
 
  const useStyles = makeStyles(theme => ({
   root: {
@@ -26,19 +21,38 @@ import {navigate} from "@reach/router";
 }));
 export default function Dashboard(props) {
   const classes = useStyles();
-  const {posts} = props;
+  const [posts, setPosts] = useState([]);
   const [slide, setSlide] = useState(false);
-  const [postId, setPostId] = useState("");
+  // const [postId, setPostId] = useState("");
   const [open, setOpen] = useState(false)
+  const [post, setPost] = useState({});
+
+  useEffect(() => {
+    fetch(`https://api.unsplash.com/photos/random/?count=50&&orientation=squarish&&client_id=FHquU1-Nh6BqvwVQu0FwBeXjBXd32mG8ACabjjMoRrU`, {method: "GET"})
+.then(data => data.json())
+.then(response => {
+  setPosts(prev => response.map(item => {
+    const id = item.id
+    const title = item.user.name
+    const subtitle = item.location.name
+    const img = item.urls.full 
+    return {...item, id, title, subtitle, img}
+  }))
+})
+},[setPosts])
+console.log(posts);
 
   function displayPostModal(postId) {
-    setPostId(postId);
+    // setPostId(postId);
     setOpen(true);
-    // navigate(`/dashboard/${postId}`);
+    setPost(prevState => {
+      const found = posts.find(item => item.id == postId);
+      return found
+    })
+    console.log(postId);
   }
   function handleModalClose() {
     setOpen(false);
-    setPostId("");
   }
   
   
@@ -57,60 +71,19 @@ export default function Dashboard(props) {
        : (
        <Grid container align= "center" alignItems= "center">
            {posts.map(post => (
-             <Grid item xs={4} onClick={() => displayPostModal(post.id)}>
+             <Grid item xs={4} key={post.id} onClick={() => displayPostModal(post.id)}>
                <img src={post.img} alt={post.id} height = { 400 }/>
              </Grid>
          ))}
        </Grid>
        )}
     </div>
-    <PostModal post={posts.filter(p => p.id == postId)} open={open} handleModalClose={handleModalClose}/>
+    <PostModal open={open} post={post} handleModalClose={handleModalClose}/>
     </>
+
   );
 } 
 
-// import React, {useState} from 'react';
-// import { makeStyles, Grid, Button } from '@material-ui/core';
-// import Slideshow from "./Slideshow";
-
- 
-// // work on styles, then work on hovering feature, then work on having the image be coming just from the mockdata
-
-
-//  const useStyles = makeStyles(theme => ({
-//   root: {
-//     marginTop: 20,
-//   },
-//   grid: {
-//     marginTop: 20,
-//     width: 500,
-//     height: 450
-//   }
-// }));
-// export default function Dashboard(props) {
-//   const classes = useStyles();
-//   const {posts} = props;
-//   const [slide, setSlide] = useState(false);
-
-
-//   return (
-//     <div className={classes.root}>
-//       <Button onClick={() => setSlide(false)}>Grid</Button>
-//       <Button onClick={() => setSlide(true)}>Slideshow</Button>
-//       {slide ? 
-//       <Slideshow posts={posts}/>
-//       : (
-//       <Grid container align= "center" alignItems= "center">
-//           {posts.map(tile => (
-//             <Grid item xs={4}>
-//               <img src={tile.img} height = { 400 } />
-//             </Grid>
-//         ))}
-//       </Grid>
-//       )}
-//     </div>
-//   );
-// } 
 
 
 

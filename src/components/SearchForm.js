@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 export default function SearchForm(props) {
-  const { images, post, posts, addToList } = props;
+  const { images, post, addToList } = props;
   const classes = useStyles();
 
   const [source, setSource] = useState([]);
@@ -46,7 +46,6 @@ export default function SearchForm(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(photo);
     addToList({ ...post, img: photo.urls.full, id: photo.id });
     navigate("/dashboard");
     setTerm("");

@@ -1,8 +1,5 @@
 import React from "react"
 import {GridList, GridListTile, GridListTileBar, makeStyles} from "@material-ui/core"
-import {data} from "../mockdata/data"
-import { red } from "@material-ui/core/colors"
-
 const useStyles = makeStyles(() => ({
     root: {
         display: 'flex',

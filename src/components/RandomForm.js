@@ -24,7 +24,7 @@ const useStyles = makeStyles(() => ({
 }))
 
 export default function RandomForm(props) {
-    const {images, post, posts, addToList} = props
+    const {images, post, addToList} = props
     const classes = useStyles()
     const [image, setImage] = useState(false);
     const [source, setSource] = useState({});
