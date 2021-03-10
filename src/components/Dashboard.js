@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import { makeStyles, Grid, Button } from '@material-ui/core';
+import { makeStyles, Grid, Button, Popover, Typography } from '@material-ui/core';
 import Slideshow from "./Slideshow";
-import PostModal from "./PostModal";
 import {navigate} from "@reach/router";
 
  
@@ -22,6 +21,9 @@ import {navigate} from "@reach/router";
     marginBottom: 20,
     marginTop: 10,
     color: "red",
+  }, 
+  popover: {
+    pointerEvents: 'none',
   }
 }));
 export default function Dashboard(props) {
@@ -29,18 +31,25 @@ export default function Dashboard(props) {
   const {posts} = props;
   const [slide, setSlide] = useState(false);
   const [postId, setPostId] = useState("");
-  const [open, setOpen] = useState(false)
+  const [anchorEl, setAnchorEl] = useState(null);
 
-  function displayPostModal(postId) {
-    setPostId(postId);
-    setOpen(true);
-    // navigate(`/dashboard/${postId}`);
+  function handlePopoverOpen(event, postId) {
+      setAnchorEl(event.currentTarget)
+      setPostId(postId);
+    console.log("enter: " + postId);
+      console.log("enter");
   }
-  function handleModalClose() {
-    setOpen(false);
-    setPostId("");
+  function handlePopoverClose() {
+      setAnchorEl(null)
+      setPostId(null);
+      console.log("exit: " + postId);
   }
-  
+  // function handleEntering(post) {
+  //   setPostId(post.id);
+  //   console.log("enter: " + post.id);
+  // }
+
+  const open = Boolean(anchorEl);
   
   return (
     <>
@@ -57,14 +66,37 @@ export default function Dashboard(props) {
        : (
        <Grid container align= "center" alignItems= "center">
            {posts.map(post => (
-             <Grid item xs={4} onClick={() => displayPostModal(post.id)}>
-               <img src={post.img} alt={post.id} height = { 400 }/>
+             <Grid container key={post.id} xs={4}>
+               <div>
+               <img src={post.img} alt={post.id} height = { 400 } aria-owns={open ? 'mouse-over-popover' : undefined}
+                        aria-haspopup="true"
+                        onMouseEnter={(event) => handlePopoverOpen(event, post.id)} 
+                        onMouseLeave={handlePopoverClose}/>
+               <Popover
+                                id="mouse-over-popover"
+                                className={classes.popover}
+                                open={open}
+                                anchorEl={anchorEl}
+                                anchorOrigin={{
+                                vertical: 'center',
+                                horizontal: 'center',
+                                }}
+                                transformOrigin={{
+                                vertical: 'center',
+                                horizontal: 'center',
+                                }}
+                                onClose={handlePopoverClose}
+                                elevation={0}
+
+                            >
+                                <Typography variant="h4">{post.id == postId ? post.title : null}</Typography>
+                            </Popover>
+                            </div>
              </Grid>
          ))}
        </Grid>
        )}
     </div>
-    <PostModal post={posts.filter(p => p.id == postId)} open={open} handleModalClose={handleModalClose}/>
     </>
   );
 } 
